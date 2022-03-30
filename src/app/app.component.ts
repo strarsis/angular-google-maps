@@ -20,20 +20,12 @@ export class AppComponent implements OnInit {
     mapId: '49e7a56523253342',
   };
   markers: MapMarker[] = [];
-  infoContent = '';
 
   ngOnInit() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.center = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-    });
+    this.addMarker();
   }
 
-  logCenter() {
-    console.log(JSON.stringify(this.map.getCenter()));
-  }
+  logCenter() {}
 
   addMarker() {
     this.markers.push({
