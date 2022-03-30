@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MapInfoWindow, MapInfoWindow, MapMarker } from '@angular/google-maps';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     maxZoom: 15,
     minZoom: 8,
   };
-  markers = [];
+  markers: MapMarker[] = [];
   infoContent = '';
 
   ngOnInit() {
@@ -32,18 +32,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  zoomIn() {
-    if (this.zoom < this.options.maxZoom) this.zoom++;
-  }
-
-  zoomOut() {
-    if (this.zoom > this.options.minZoom) this.zoom--;
-  }
-
-  click(event: google.maps.MouseEvent) {
-    console.log(event);
-  }
-
   logCenter() {
     console.log(JSON.stringify(this.map.getCenter()));
   }
@@ -51,18 +39,18 @@ export class AppComponent implements OnInit {
   addMarker() {
     this.markers.push({
       position: {
-        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
+        lat: 1,
+        lng: 2,
       },
       label: {
         color: 'red',
-        text: 'Marker label ' + (this.markers.length + 1),
+        text: 'Marker label',
       },
-      title: 'Marker title ' + (this.markers.length + 1),
+      title: 'Marker title',
       options: {
         animation: google.maps.Animation.BOUNCE,
       },
-    });
+    } as MapMarker);
   }
 
   openInfo(marker: MapMarker) {
