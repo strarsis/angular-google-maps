@@ -13,12 +13,11 @@ export class AppComponent implements OnInit {
   zoom = 12;
   center: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
-    zoomControl: false,
-    scrollwheel: false,
     disableDoubleClickZoom: true,
-    mapTypeId: 'hybrid',
+    mapTypeId: 'roadmap',
     maxZoom: 15,
     minZoom: 8,
+    mapId: '49e7a56523253342',
   };
   markers: MapMarker[] = [];
   infoContent = '';
