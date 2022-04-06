@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   markers: MapMarker[] = [];
 
   ngOnInit() {
+    console.log(this.center);
     navigator.geolocation.getCurrentPosition((position) => {
       this.center = {
         lat: position.coords.latitude,
