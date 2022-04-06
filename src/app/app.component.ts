@@ -18,11 +18,20 @@ export class AppComponent implements OnInit {
     maxZoom: 15,
     minZoom: 8,
     mapId: '49e7a56523253342',
+    center: {
+      lat: 36.544443,
+      lng: 31.995408,
+    },
   };
   markers: MapMarker[] = [];
 
   ngOnInit() {
-    this.addMarker();
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.center = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+    });
   }
 
   logCenter() {}
@@ -30,8 +39,8 @@ export class AppComponent implements OnInit {
   addMarker() {
     this.markers.push({
       position: {
-        lat: 1,
-        lng: 2,
+        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
+        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
       },
       label: {
         color: 'red',
